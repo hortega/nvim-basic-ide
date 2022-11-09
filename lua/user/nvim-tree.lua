@@ -11,9 +11,12 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
+  git = {
+    ignore = false,
+  },
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_cwd = false,
   },
   renderer = {
     root_folder_modifier = ":t",
@@ -54,7 +57,9 @@ nvim_tree.setup {
     },
   },
   view = {
-    width = 30,
+    width = 50,
+    height = 30,
+    auto_resize = true,
     side = "left",
     mappings = {
       list = {

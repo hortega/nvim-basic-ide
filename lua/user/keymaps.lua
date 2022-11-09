@@ -58,11 +58,13 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fr", ":Telescope grep_string<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap('n', '<leader>hb', ":Gitsigns blame_line<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
@@ -78,3 +80,12 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+
+-- Custom
+
+keymap("n", "<leader>p", "\"_dP", opts)
+keymap("n", "<leader>fo", "<ESC>viwy:Telescope find_files<CR><c-v>", opts)
+keymap("n", "<leader>cc", "<ESC>viwy", opts)
+keymap("n", "<leader>vv", "<ESC>viwp", opts)
+keymap("n", "<leader>c\"", "<ESC>vi\"y", opts)
+keymap("n", "<leader>v\"", "<ESC>vi\"p", opts)
