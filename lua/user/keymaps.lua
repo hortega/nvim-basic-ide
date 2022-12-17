@@ -22,6 +22,17 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+-- window management
+keymap("n", "<leader>sv", "<C-w>v") -- split window vertically
+keymap("n", "<leader>sh", "<C-w>s") -- split window horizontally
+keymap("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
+keymap("n", "<leader>sx", ":close<CR>") -- close current split window
+
+keymap("n", "<leader>to", ":tabnew<CR>") -- open new tab
+keymap("n", "<leader>tx", ":tabclose<CR>") -- close current tab
+keymap("n", "<leader>tn", ":tabn<CR>") --  go to next tab
+keymap("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -41,6 +52,13 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
+-- delete single character without copying into register
+keymap("n", "x", '"_x')
+
+-- increment/decrement numbers
+keymap("n", "<leader>+", "<C-a>") -- increment
+keymap("n", "<leader>-", "<C-x>") -- decrement
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
@@ -51,6 +69,9 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Plugins --
+
+-- vim-maximizer
+keymap("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
@@ -65,6 +86,7 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap('n', '<leader>hb', ":Gitsigns blame_line<CR>", opts)
+keymap('n', '<leader>hb', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>', opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)

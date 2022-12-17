@@ -10,6 +10,9 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
+-- change color for arrows in tree to light blue
+vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
+
 nvim_tree.setup {
   git = {
     ignore = false,
@@ -25,8 +28,10 @@ nvim_tree.setup {
         default = "",
         symlink = "",
         folder = {
-          arrow_open = "",
-          arrow_closed = "",
+          -- arrow_open = "",
+          -- arrow_closed = "",
+          arrow_closed = "", -- arrow when folder is closed
+          arrow_open = "", -- arrow when folder is open
           default = "",
           open = "",
           empty = "",
@@ -58,8 +63,6 @@ nvim_tree.setup {
   },
   view = {
     width = 50,
-    height = 30,
-    auto_resize = true,
     side = "left",
     mappings = {
       list = {
