@@ -5,6 +5,10 @@ end
 
 local actions = require "telescope.actions"
 
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
+
+
 telescope.setup {
   defaults = {
 

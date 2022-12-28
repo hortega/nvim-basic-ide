@@ -43,6 +43,12 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
+
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -65,6 +71,7 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
+      local copilot_keys = vim.fn['copilot#Accept']()
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expandable() then
@@ -73,6 +80,8 @@ cmp.setup({
 				luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()
+      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
+        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
 			else
 				fallback()
 			end
@@ -116,6 +125,38 @@ cmp.setup({
 	-- 	{ name = "path" },
 	-- },
   sources = {
+    { name = "crates", group_index = 1 },
+    {
+      name = "copilot",
+      -- keyword_length = 0,
+      max_item_count = 3,
+      trigger_characters = {
+        {
+          ".",
+          ":",
+          "(",
+          "'",
+          '"',
+          "[",
+          ",",
+          "#",
+          "*",
+          "@",
+          "|",
+          "=",
+          "-",
+          "{",
+          "/",
+          "\\",
+          "+",
+          "?",
+          " ",
+          -- "\t",
+          -- "\n",
+        },
+      },
+      group_index = 2,
+    },
     { name = 'path' },                              -- file paths
     { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized

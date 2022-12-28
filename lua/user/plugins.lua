@@ -60,6 +60,8 @@ return packer.startup(function(use)
   use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
   use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
   use("szw/vim-maximizer") -- maximizes and restores current window
+  use("kdheepak/lazygit.nvim")
+
   -- essential plugins
   use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
   use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
@@ -95,10 +97,17 @@ return packer.startup(function(use)
   use { "jose-elias-alvarez/null-ls.nvim", commit = "c0c19f32b614b3921e17886c541c13a72748d450" } -- for formatters and linters
   use { "RRethy/vim-illuminate", commit = "a2e8476af3f3e993bb0d6477438aad3096512e42" }
   use { "github/copilot.vim"}
+
   use { 'simrat39/rust-tools.nvim' }
-  
+ --  use { "simrat39/rust-tools.nvim", after = "nvim-lspconfig",
+ --         config = function()
+ --                  require('rust-tools').setup({})
+ --         end
+ -- }
   -- Telescope
   use { "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
 
   -- Treesitter
   use {

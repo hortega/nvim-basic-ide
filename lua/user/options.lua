@@ -42,3 +42,4 @@ vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters
 vim.opt.linebreak = true
 vim.opt.autoindent = true
 vim.opt.background = "dark"
+
