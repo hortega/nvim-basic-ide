@@ -62,6 +62,7 @@ return packer.startup(function(use)
   use("szw/vim-maximizer") -- maximizes and restores current window
   use("kdheepak/lazygit.nvim")
 
+
   -- essential plugins
   use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
   use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
@@ -114,6 +115,11 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     commit = "8e763332b7bf7b3a426fd8707b7f5aa85823a5ac",
   }
+  use {
+    "nvim-treesitter/nvim-treesitter-context",
+    commit = "959265a",
+  }
+  use("mbbill/undotree")
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" }
@@ -122,6 +128,10 @@ return packer.startup(function(use)
   use { "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" }
   use { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+
+  -- GO
+  use 'ray-x/go.nvim'
+  use 'ray-x/guihua.lua' -- recommended if need floating window support
 
   -- use { "neoclide/coc.nvim", commit = "2522eee57d18aea040f4def29f2b8e9c69b5690c" , run = "yarn install --frozen-lockfile"}
 

@@ -1,7 +1,7 @@
 require "user.impatient"
 require "user.options"
-require "user.keymaps"
 require "user.plugins"
+require "user.keymaps"
 require "user.autocommands"
 require "user.colorscheme"
 require "user.cmp"
@@ -22,6 +22,7 @@ require "user.lsp"
 require "user.dap"
 require "user.diagnostics"
 require "user.copilot"
+require "user.go"
 
 local rt = require("rust-tools")
 
@@ -50,5 +51,11 @@ rt.setup({
       vim.keymap.set("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", bufopts)
 
     end,
+
+    settings = {
+      ["rust-analyzer"] = {
+        inlayHints = { locationLinks = false },
+      },
+    },
   },
 })

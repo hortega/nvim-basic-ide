@@ -130,5 +130,8 @@ keymap("n", "<leader>c\"", "<ESC>vi\"y", opts)
 keymap("n", "<leader>v\"", "<ESC>vi\"p", opts)
 
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true })-- Renamer
+keymap("n", "<leader>vca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true })-- Renamer
+keymap("n", "<leader>vrr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true })-- Renamer
+keymap("n", "<leader>vh", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true })-- Renamer
 
 -- Copilot

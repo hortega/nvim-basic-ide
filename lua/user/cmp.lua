@@ -71,7 +71,7 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-      local copilot_keys = vim.fn['copilot#Accept']()
+      -- local copilot_keys = vim.fn['copilot#Accept']()
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expandable() then
@@ -80,8 +80,8 @@ cmp.setup({
 				luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()
-      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+      -- elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
+      --   vim.api.nvim_feedkeys(copilot_keys, 'i', true)
 			else
 				fallback()
 			end
@@ -125,45 +125,48 @@ cmp.setup({
 	-- 	{ name = "path" },
 	-- },
   sources = {
-    { name = "crates", group_index = 1 },
-    {
-      name = "copilot",
-      -- keyword_length = 0,
-      max_item_count = 3,
-      trigger_characters = {
-        {
-          ".",
-          ":",
-          "(",
-          "'",
-          '"',
-          "[",
-          ",",
-          "#",
-          "*",
-          "@",
-          "|",
-          "=",
-          "-",
-          "{",
-          "/",
-          "\\",
-          "+",
-          "?",
-          " ",
-          -- "\t",
-          -- "\n",
-        },
-      },
-      group_index = 2,
-    },
-    { name = 'path' },                              -- file paths
+    { name = "crates", group_index = 1, keyword_length = 3 },
+    -- {
+    --   name = "copilot",
+    --   -- keyword_length = 0,
+    --   max_item_count = 3,
+    --   trigger_characters = {
+    --     {
+    --       ".",
+    --       ":",
+    --       "(",
+    --       "'",
+    --       '"',
+    --       "[",
+    --       ",",
+    --       "#",
+    --       "*",
+    --       "@",
+    --       "|",
+    --       "=",
+    --       "-",
+    --       "{",
+    --       "/",
+    --       "\\",
+    --       "+",
+    --       "?",
+    --       " ",
+    --       -- "\t",
+    --       -- "\n",
+    --     },
+    --   },
+    --   group_index = 2,
+    -- },
+    { name = 'buffer', keyword_length = 2 },        -- source current buffer
+    { name = 'path', keyword_length = 3 },                              -- file paths
     { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
     { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
-    { name = 'buffer', keyword_length = 2 },        -- source current buffer
     { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
     { name = 'calc'},                               -- source for math calculation
+  },
+  completion = {
+    autocomplete = false,
   },
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
@@ -177,3 +180,13 @@ cmp.setup({
 		ghost_text = true,
 	},
 })
+
+-- NOTE: change "plugin.cmp.debounce" to location of debounce.lua
+-- If it's in the lua folder, then change to "debounce"
+
+-- vim.cmd([[
+--   augroup CmpDebounceAuGroup
+--     au!
+--     au TextChangedI * lua require("user.debounce").debounce()
+--   augroup end
+-- ]])
